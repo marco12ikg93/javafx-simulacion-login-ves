@@ -23,4 +23,5 @@ public class ClasePrincipal extends Application{
         SceneManager.getInstanciaSceneManager().ventanaLogin();
     }   
     
+    
 }

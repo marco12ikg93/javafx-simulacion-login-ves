@@ -4,10 +4,12 @@
  */
 package com.marcobarrios.controller;
 
+import com.marcobarrios.view.BienvenidaView;
 import com.marcobarrios.view.LoginView;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javax.swing.JOptionPane;
@@ -24,6 +26,27 @@ public class SceneManager {
     
     private SceneManager(){
         
+    }
+    
+    
+    public void ventanaBienvenida(){
+        try{
+            this.escenarioSecundario = new Stage();
+            this.escenarioSecundario.initStyle(StageStyle.TRANSPARENT);
+            this.escenarioSecundario.initModality(Modality.APPLICATION_MODAL);
+            BienvenidaView bienvenida = new BienvenidaView();
+            this.escenaPrincipal = new Scene(bienvenida, 15, 25);
+            this.escenarioSecundario.setScene(escenaPrincipal);
+            this.escenarioSecundario.sizeToScene();
+            this.escenarioSecundario.showAndWait();
+            
+        }catch(NullPointerException objetoNulo){
+            JOptionPane.showMessageDialog(null, "Error de objeto nulo: Ventana Login");
+            objetoNulo . printStackTrace(); //Muestra todo el camino del error
+        }catch(Exception errorPadre){
+            JOptionPane.showMessageDialog(null, "Error padre: Ventana Login");
+            errorPadre .printStackTrace();
+        }
     }
     
     public void ventanaLogin(){
@@ -75,6 +98,22 @@ public class SceneManager {
 
     public void setEscenarioPrincipal(Stage escenarioPrincipal) {
         this.escenarioPrincipal = escenarioPrincipal;
+    }
+
+    public Stage getEscenarioSecundario() {
+        return escenarioSecundario;
+    }
+
+    public void setEscenarioSecundario(Stage escenarioSecundario) {
+        this.escenarioSecundario = escenarioSecundario;
+    }
+
+    public Scene getEscenaPrincipal() {
+        return escenaPrincipal;
+    }
+
+    public void setEscenaPrincipal(Scene escenaPrincipal) {
+        this.escenaPrincipal = escenaPrincipal;
     }
 
     
